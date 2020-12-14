@@ -6,10 +6,13 @@ const {
   response
 } = require('express');
 var express = require('express');
+const {
+  request
+} = require('http');
 var app = express();
 var client_id = 'FY8m9EjN0y6D1q_oh2jt';
 var client_secret = '8FSbPVH0Xy';
-var query = "번역할 문장을 입력하세요.";
+var query = "오늘은 날씨가 좋아요";
 app.get('/translate', function (req, res) {
   var api_url = 'https://openapi.naver.com/v1/papago/n2mt';
   var request = require('request');
@@ -33,7 +36,9 @@ app.get('/translate', function (req, res) {
       res.end(body);
       console.log(body);
       var hello = JSON.parse(body);
-      console.log(hello);
+      var result =hello.message.result.translatedText;
+      console.log(result);
+      return result;
     } else {
       res.status(response.statusCode).end();
       console.log('error = ' + response.statusCode);
@@ -42,4 +47,4 @@ app.get('/translate', function (req, res) {
 });
 app.listen(3000, function () {
   console.log('http://127.0.0.1:3000/translate app listening on port 3000!');
-});
+}); 
