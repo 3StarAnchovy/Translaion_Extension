@@ -10,12 +10,33 @@
 
 <body>
     <div>
-        <form action="bg.js" method="POST">
+        <form>
             <input type="text" id="beforeTrans" class="TransMaker">
             <input type="text" class="TransMaker" readonly>
             <input type="submit" id="TransSubmit" value="번역">
         </form>
     </div>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.js"
+        integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
+
+    <script>
+        $.ajax({
+                method: "POST",
+                url: "https://dapi.kakao.com/v2/translation/translate",
+                data: {
+                    query: "안녕하세염",
+                    src_lang: "kr",
+                    target_lang: "eng"
+                },
+                headers: {
+                    Authorization: "KakaoAK f322a7c0de031277ca41fa216036f5c4"
+                }
+            })
+            .done(function (msg) {
+                alert("Hello" + msg);
+            });
+    </script>
 </body>
 
 </html>
