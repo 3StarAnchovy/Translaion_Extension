@@ -21,24 +21,27 @@
         integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 
     <script>
-        var beforeTrans=document.querySelector("#beforeTrans").value;
-        console.log(beforeTrans);
-        $.ajax({
-                method: "POST",
-                url: "https://dapi.kakao.com/v2/translation/translate",
-                data: {
-                    query: "안녕",
-                    src_lang: "kr",
-                    target_lang: "en"
-                },
-                headers: {
-                    Authorization: "KakaoAK 32dc4f706e880a7711d7a57429820538"
-                }
-            })
-            .done(function (msg) {
-                alert("Hello" + msg);
-                console.log(msg);
-            });
+        var submitBtn = document.querySelector("#TransSubmit");
+        submitBtn.addEventListener("click", DoTrans);
+        var beforeTrans = document.querySelector("#beforeTrans");
+
+        function DoTrans() {
+            $.ajax({
+                    method: "POST",
+                    url: "https://dapi.kakao.com/v2/translation/translate",
+                    data: {
+                        query: "안녕",
+                        src_lang: "kr",
+                        target_lang: "en"
+                    },
+                    headers: {
+                        Authorization: "KakaoAK 32dc4f706e880a7711d7a57429820538"
+                    }
+                })
+                .done(function (msg) {
+                    console.log(msg);
+                });
+        }
     </script>
 </body>
 
