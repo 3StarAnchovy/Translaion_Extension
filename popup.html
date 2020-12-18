@@ -12,7 +12,7 @@
     <div>
         <form>
             <input type="text" id="beforeTrans" class="TransMaker">
-            <input type="text" class="TransMaker" readonly>
+            <input type="text" id="afterTrans" class="TransMaker" readonly>
             <input type="submit" id="TransSubmit" value="번역">
         </form>
     </div>
@@ -23,24 +23,37 @@
     <script>
         var submitBtn = document.querySelector("#TransSubmit");
         submitBtn.addEventListener("click", DoTrans);
-        var beforeTrans = document.querySelector("#beforeTrans");
-
+        var beforeTrans = document.querySelector("#beforeTrans").value;
+        console.log("hello");
         function DoTrans() {
-            $.ajax({
-                    method: "POST",
-                    url: "https://dapi.kakao.com/v2/translation/translate",
-                    data: {
-                        query: "안녕",
-                        src_lang: "kr",
-                        target_lang: "en"
-                    },
-                    headers: {
-                        Authorization: "KakaoAK 32dc4f706e880a7711d7a57429820538"
-                    }
-                })
-                .done(function (msg) {
-                    console.log(msg);
-                });
+            const xmhl = new XMLHttpRequest();
+            xmhl.open('POST', "https://dapi.kakao.com/v2/translation/translate");
+            xmhl.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+            xmhl.setRequestHeader('Authorization',"KakaoAK 32dc4f706e880a7711d7a57429820538");
+            const data = {
+                query: "안녕",
+                src_lang: "kr",
+                target_lang: "en"
+            };
+            xmhl.send(Object.keys(data).map(key => `${key}=${data[key]}`).join('&'));
+            console.dir(xmhl);
+            document.getElementById('afterTrans').innerHTML=xmhl.responseText;
+            // $.ajax({
+            //         method: "POST",
+            //         url: "https://dapi.kakao.com/v2/translation/translate",
+            //         data: {
+            //             query: "안녕",
+            //             src_lang: "kr",
+            //             target_lang: "en"
+            //         },
+            //         headers: {
+            //             Authorization: "KakaoAK 32dc4f706e880a7711d7a57429820538"
+            //         }
+            //     })
+            //     .done(function (msg) {
+            //         console.log(msg);
+            //         document.querySelector('#afterTrans').innerHTML = msg;
+            //     });
         }
     </script>
 </body>
