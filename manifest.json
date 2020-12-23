@@ -3,14 +3,15 @@
     "version": "2.1",
     "description": "Do Translation",
     "manifest_version": 2,
+    "content_security_policy": "script-src 'self' 'unsafe-inline'; object-src 'self'",
     "icons": {
         "128": "icon_128.png"
     },
     "background": {
         "persistent": false,
-        "scripts": ["bg.js","jquery.js"]
+        "scripts": ["bg.js", "jquery.js"]
     },
-    "permissions": ["http://*.google.com/", "https://*.google.com/"],
+    "permissions": ["http://*.google.com/", "https://*.google.com/", "https://dapi.kakao.com/v2/translation/translate"],
     "browser_action": {
         "default_title": "",
         "default_icon": "icon_19.png",
