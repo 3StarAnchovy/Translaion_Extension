@@ -15,10 +15,10 @@
     </div>
     <div>
         <input type="text" id="afterTrans" class="TransMaker" readonly>
-        <p id="af">default</p>
     </div>
-    <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
-        crossorigin="anonymous"></script>
+    <!-- <script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+        crossorigin="anonymous"></script> -->
+    <script src="jquery.js"></script>
 
     <script>
         // var beforeTrans = document.querySelector("#beforeTrans").value;
@@ -44,11 +44,13 @@
             // console.dir(result);
             // document.write(result);
             //document.getElementById('afterTrans').innerHTML = "result.translated_text";
+            var target = $("#beforeTrans").val();
+            console.log(target);
             $.ajax({
                     method: "POST",
                     url: "https://dapi.kakao.com/v2/translation/translate",
                     data: {
-                        query: "자 드가자",
+                        query: target,
                         src_lang: "kr",
                         target_lang: "en"
                     },
@@ -57,8 +59,9 @@
                     }
                 })
                 .done(function (msg) {
+                    $("#afterTrans").val('');
                     console.log(msg.translated_text[0]);
-                    $("p").append(msg.translated_text[0]);
+                    $("#afterTrans").val(msg.translated_text[0]);
                 });
         }
     </script>

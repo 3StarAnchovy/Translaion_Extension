@@ -8,7 +8,7 @@
     },
     "background": {
         "persistent": false,
-        "scripts": ["bg.js", "thirdParty/jquery-3.5.1.js"]
+        "scripts": ["bg.js","jquery.js"]
     },
     "permissions": ["http://*.google.com/", "https://*.google.com/"],
     "browser_action": {
