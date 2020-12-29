@@ -3,7 +3,7 @@
         submitBtn.addEventListener("click", DoTrans);
 
         function DoTrans() {
-            var target = $("#beforeT  rans").val();
+            var target = $("#beforeTrans").val();
             var src_lang = $('#src_lang').val();
             var target_lang = $('#target_lang').val();
             console.log(target);
