@@ -2,8 +2,8 @@
 var submitBtn = document.querySelector("#TransSubmit");
 submitBtn.addEventListener("click", DoTrans);
 
-var doTrans = Document.querySelector("#beforeTrans");
-doTrans.addEventListener("keydown", DoTrans);
+var doTrans = document.querySelector("#beforeTrans");
+doTrans.addEventListener("keyup", DoTrans);
 
 function DoTrans() {
     var target = $("#beforeTrans").val();
